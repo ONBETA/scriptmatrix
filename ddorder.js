@@ -2,7 +2,7 @@ const matrix = init()
 
 ;(exec = async () => {
     matrix.log(`🔔 开始复制`)
-    for (let i = 1; i < 200; i++) await clone(i)
+    for (let i = 1; i < 250; i++) await clone(i)
   })()
   .catch((e) => matrix.log(`❌ 复制失败: ${e}`))
   .finally(() => matrix.done())
@@ -24,6 +24,7 @@ const matrix = init()
          url.headers = $request.headers
          url.body = $request.body
    
+         
       matrix.post(url, (error, response, data) => {
         try {
           if(JSON.parse(data).success == true){
@@ -32,7 +33,7 @@ const matrix = init()
             resolve()
           }
           else{
-            matrix.log(`❌ 下单失败--【${cnt}】: ${e}`)
+            matrix.log(`❌ 下单失败--【${cnt}】: ${JSON.parse(data).msg}`)
             resolve()
           }
           
