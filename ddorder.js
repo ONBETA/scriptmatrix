@@ -28,7 +28,7 @@ const matrix = init()
       matrix.post(url, (error, response, data) => {
         try {
           if(JSON.parse(data).success == true){
-            matrix.msg(`⭕ 下单成功`, `${cnt}号分身已成功下单`, `msg: ${JSON.parse(data).msg}`)
+            matrix.msg(`⭕ 下单成功`, `【${cnt}】已成功下单，请立即支付`, `msg: ${JSON.parse(data).msg}`)
             matrix.log(`⭕ 下单成功--【${cnt}】`)
             resolve()
           }
