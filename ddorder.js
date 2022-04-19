@@ -2,7 +2,7 @@ const matrix = init()
 
 ;(exec = async () => {
     matrix.log(`🔔 开始复制`)
-    for (let i = 1; i < 250; i++) await clone(i)
+    for (let i = 1; i < 150; i++) await clone(i)
   })()
   .catch((e) => matrix.log(`❌ 复制失败: ${e}`))
   .finally(() => matrix.done())
