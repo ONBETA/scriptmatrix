@@ -1,7 +1,7 @@
 const matrix = init()
 
 ;(exec = async () => {
-    matrix.log(`🔔 开始复制`)
+    matrix.log(`🔔 捕获到下单请求，开始增量`)
     for (let i = 1; i < 150; i++) await clone(i)
   })()
   .catch((e) => matrix.log(`❌ 复制失败: ${e}`))
@@ -28,8 +28,8 @@ const matrix = init()
       matrix.post(url, (error, response, data) => {
         try {
           if(JSON.parse(data).success == true){
-            matrix.msg(`⭕ 下单成功`, `【${cnt}】已成功下单，请立即支付`, `msg: ${JSON.parse(data).msg}`)
-            matrix.log(`⭕ 下单成功--【${cnt}】`)
+            matrix.msg(`⭕ 订单提交成功`, `【${cnt}】已成功下单，请立即支付`, `msg: ${JSON.parse(data).msg}`)
+            matrix.log(`⭕ 订单提交成功 --【${cnt}】`)
             resolve()
           }
           else{
@@ -38,8 +38,8 @@ const matrix = init()
           }
           
         } catch (e) {
-            matrix.log(`❌ 下单失败--【${cnt}】: ${e}`)
-            matrix.log(`❌ 下单失败--【${cnt}】 - response: ${JSON.stringify(response)}`)
+            matrix.log(`❌ 错误 --【${cnt}】: ${e}`)
+            matrix.log(`❌ 错误 --【${cnt}】 - response: ${JSON.stringify(response)}`)
           resolve()
         }
       })
