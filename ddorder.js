@@ -32,6 +32,11 @@ const matrix = init()
             matrix.log(`⭕ 订单提交成功 --【${cnt}】`)
             resolve()
           }
+          else if(JSON.parse(data).code == 5003){
+            matrix.msg(`❌ 商品全部售罄`, `【${cnt}】返回结果：商品全部售罄`, `msg: ${JSON.parse(data).msg}`)
+            matrix.log(`❌ 商品全部售罄 --【${cnt}】: ${JSON.parse(data).msg}`)
+            resolve()
+          }
           else{
             matrix.log(`❌ 下单失败--【${cnt}】: ${JSON.parse(data).msg}`)
             resolve()
