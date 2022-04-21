@@ -27,7 +27,11 @@ const matrix = init()
          
       matrix.post(url, (error, response, data) => {
         try {
-          if(JSON.parse(data).success == true){
+          if(JSON.parse(data).code == -3000){
+            matrix.log(`❌ 通道拥挤 --【${cnt}】: ${JSON.parse(data).msg}`)
+            resolve()
+          }
+          else if(JSON.parse(data).success == true){
             matrix.msg(`⭕ 订单提交成功`, `【${cnt}】已成功下单，请立即支付`, `msg: ${JSON.parse(data).msg}`)
             matrix.log(`⭕ 订单提交成功 --【${cnt}】`)
             resolve()
