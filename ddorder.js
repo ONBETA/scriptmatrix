@@ -41,8 +41,12 @@ const matrix = init()
             matrix.log(`❌ 商品全部售罄 --【${cnt}】: ${JSON.parse(data).msg}`)
             resolve()
           }
+          else if(JSON.parse(data).code == 5014){
+            matrix.log(`❌ 暂未营业 --【${cnt}】: ${JSON.parse(data).msg}`)
+            resolve()
+          }
           else{
-            matrix.log(`❌ 下单失败--【${cnt}】: ${JSON.parse(data).msg}`)
+            matrix.log(`❌ 下单失败--【${cnt}】(${JSON.parse(data).code}): ${JSON.parse(data).msg}`)
             resolve()
           }
           
