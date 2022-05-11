@@ -53,6 +53,7 @@ const matrix = init()
           }
           else{
             matrix.log(`❌ 下单失败--【${cnt}】(${JSON.parse(data).code}): ${JSON.parse(data).msg}`)
+            matrix.successReport();
             resolve()
           }
           
