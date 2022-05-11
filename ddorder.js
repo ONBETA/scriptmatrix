@@ -33,7 +33,7 @@ const matrix = init()
           }
           else if(JSON.parse(data).code == -3001){
             matrix.log(`❌ 前方拥挤，稍后再试 --【${cnt}】(${JSON.parse(data).code})`)
-            await successReport();
+            successReport();
             resolve()
           }
           else if(JSON.parse(data).success == true){
