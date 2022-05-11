@@ -28,12 +28,12 @@ const matrix = init()
       matrix.post(url, (error, response, data) => {
         try {
           if(JSON.parse(data).code == -3000){
-            matrix.log(`❌ 抱歉人多拥挤 --【${cnt}】: ${JSON.parse(data).msg}`)
+            matrix.log(`❌ 抱歉人多拥挤 --【${cnt}】(${JSON.parse(data).code}): ${JSON.parse(data).msg}`)
             matrix.successReport();
             resolve()
           }
           else if(JSON.parse(data).code == -3001){
-            matrix.log(`❌ 前方拥挤，稍后再试 --【${cnt}】`)
+            matrix.log(`❌ 前方拥挤，稍后再试 --【${cnt}】(${JSON.parse(data).code})`)
             matrix.successReport();
             resolve()
           }
