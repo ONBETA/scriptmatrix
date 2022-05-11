@@ -28,7 +28,12 @@ const matrix = init()
       matrix.post(url, (error, response, data) => {
         try {
           if(JSON.parse(data).code == -3000){
-            matrix.log(`❌ 通道拥挤 --【${cnt}】: ${JSON.parse(data).msg}`)
+            matrix.log(`❌ 抱歉人多拥挤 --【${cnt}】: ${JSON.parse(data).msg}`)
+            matrix.successReport();
+            resolve()
+          }
+          else if(JSON.parse(data).code == -3001){
+            matrix.log(`❌ 前方拥挤，稍后再试 --【${cnt}】`)
             resolve()
           }
           else if(JSON.parse(data).success == true){
@@ -53,6 +58,43 @@ const matrix = init()
         } catch (e) {
             matrix.log(`❌ 错误 --【${cnt}】: ${e}`)
             matrix.log(`❌ 错误 --【${cnt}】 - response: ${JSON.stringify(response)}`)
+          resolve()
+        }
+      })
+    })
+  }
+
+  function successReport() {
+    return new Promise((resolve, reject) => {
+
+        const url = { url: 'https://api.onbeta.com:14000/orderreport', headers: $request.headers }
+    //   url.headers['Accept'] = '*/*'
+    //   url.headers['Origin'] = 'https://activity.m.ddxq.mobi'
+    //   url.headers['Accept-Encoding'] = 'gzip, deflate, br'
+    //   url.headers['Content-Type'] = 'application/x-www-form-urlencoded'
+    //   url.headers['Host'] = 'ddxq.mobi'
+    //   url.headers['Connection'] = 'keep-alive'
+    //   url.headers['Referer'] = 'https://activity.m.ddxq.mobi/'
+    //   url.headers['Content-Length'] = '129'
+    //   url.headers['Accept-Language'] = 'zh-cn'
+
+         url.headers = $request.headers
+         url.body = $request.body
+   
+         
+      matrix.post(url, (error, response, data) => {
+        try {
+          if(JSON.parse(data).code == 0){
+            matrix.log(`✅ 已成功上报`)
+            resolve()
+          }
+          else{
+            matrix.log(`❎ 上报失败`)
+            resolve()
+          }
+          
+        } catch (e) {
+            matrix.log(`❎ 错误 : ${e}`)
           resolve()
         }
       })
