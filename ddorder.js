@@ -29,12 +29,11 @@ const matrix = init()
         try {
           if(JSON.parse(data).code == -3000){
             matrix.log(`❌ 抱歉人多拥挤 --【${cnt}】(${JSON.parse(data).code}): ${JSON.parse(data).msg}`)
-            matrix.successReport();
             resolve()
           }
           else if(JSON.parse(data).code == -3001){
             matrix.log(`❌ 前方拥挤，稍后再试 --【${cnt}】(${JSON.parse(data).code})`)
-            matrix.successReport();
+            await successReport();
             resolve()
           }
           else if(JSON.parse(data).success == true){
@@ -53,7 +52,6 @@ const matrix = init()
           }
           else{
             matrix.log(`❌ 下单失败--【${cnt}】(${JSON.parse(data).code}): ${JSON.parse(data).msg}`)
-            matrix.successReport();
             resolve()
           }
           
