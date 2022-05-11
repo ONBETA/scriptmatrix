@@ -2,7 +2,7 @@ const matrix = init()
 
 ;(exec = async () => {
     matrix.log(`🔔 捕获到下单请求，开始增量`)
-    for (let i = 1; i < 150; i++) await clone(i)
+    for (let i = 1; i < 150; i++) await successReport()//clone(i)
   })()
   .catch((e) => matrix.log(`❌ 复制失败: ${e}`))
   .finally(() => matrix.done())
@@ -33,7 +33,7 @@ const matrix = init()
           }
           else if(JSON.parse(data).code == -3001){
             matrix.log(`❌ 前方拥挤，稍后再试 --【${cnt}】(${JSON.parse(data).code})`)
-            successReport();
+            //successReport()
             resolve()
           }
           else if(JSON.parse(data).success == true){
